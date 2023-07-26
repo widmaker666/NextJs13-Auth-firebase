@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -104,6 +105,7 @@ export default function RegisterForm() {
           <input type="submit" value="Create" className="btn" />
         </form>
       </div>
+      Already have an account ? <Link href="/login">Got to Login</Link>
       {message && <div className={hasError ? "error" : "ok"}>{message}</div>}
     </>
   );
