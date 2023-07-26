@@ -1,9 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=REM:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Borel&display=swap");
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -38,6 +39,7 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+  --form-width: 80%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -86,6 +88,7 @@ body {
 }
 
 body {
+  font-family: "REM", sans -serif;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -98,10 +101,87 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  font-weight: 600;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+h3 {
+  padding-bottom: 10px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.form-header {
+  width: var(--form-width);
+  margin: 40px;
+}
+
+.form-container h3 {
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: var(--form-width);
+  margin-bottom: 20px;
+}
+
+.form label {
+  margin: 10px 0;
+}
+
+.form input {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form textarea {
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.form .btn {
+  border: none;
+  padding: 10px 5px;
+  border-radius: 3px;
+  margin: 5px 0;
+  cursor: pointer;
 }
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+}
+
+.pass-eye {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.pass-eye svg {
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+}
+.ok {
+  color: green;
 }

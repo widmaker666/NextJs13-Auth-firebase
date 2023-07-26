@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 80%;
+}
+
+.idea {
+  flex: 0 0 170px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding: 20px;
+  height: 200px;
+}
+
+.idea-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.description {
+  font-size: 12px;
+  padding: 10px auto;
+}
+
+@media screen and (max-width: 450px) {
+    .container{
+        flex-direction: column;        
+    }    
+}
