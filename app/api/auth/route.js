@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { auth } from "./firebase-config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 export async function POST(request) {
   const { email, password, task } = await request.json();
@@ -42,10 +45,43 @@ export async function POST(request) {
       }
       // le mots de passe doit avoir plus de 6 caractères
     }
-
-    if (task === "login") {
-      //faire
-    }
-    return NextResponse.json({ status: 200, message: "Task unknown" });
   }
+
+  if (task === "login") {
+    try {
+      const credentials = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log({ loginResponse: credentials });
+
+      return NextResponse.json({
+        status: 200,
+        message: `Welcome back ${email}`,
+      });
+    } catch (error) {
+      console.log({ serverErrMsg: error.message });
+      if (error.message.includes("auth/weak-password")) {
+        return NextResponse.json({
+          status: 500,
+          message: "Login failed, email or password incorrect",
+        });
+      }
+
+      if (error.message.includes("auth/user-not-found")) {
+        return NextResponse.json({
+          status: 500,
+          message: `no user with this ${email}`,
+        });
+      }
+
+      console.log({ loginError: error });
+      return NextResponse.json({
+        status: 500,
+        message: "login error",
+      });
+    }
+  }
+  return NextResponse.json({ status: 200, message: "Task unknown" });
 }
