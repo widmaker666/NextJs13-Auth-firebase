@@ -1,7 +1,8 @@
 "use client";
 
+import { AuthContext } from "../context/AuthContextProvider";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 async function loginUser(data) {
@@ -23,6 +24,7 @@ export default function LoginForm() {
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const { refreshLoginState } = useContext(AuthContext);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -37,6 +39,11 @@ export default function LoginForm() {
     const responseJson = await response.json();
 
     if (responseJson.status === 200) {
+      refreshLoginState({
+        email: responseJson.email,
+        uid: responseJson.uid,
+        jwt: responseJson.jwt,
+      });
       setEmail("");
       setPassword("");
       setMessage(responseJson.message);
@@ -82,7 +89,7 @@ export default function LoginForm() {
         </form>
       </div>
       No account yet ? <Link href="/register">Got to register</Link>
-      {message && <div className={hasError ? 'error' : 'ok'}>{message}</div> }
+      {message && <div className={hasError ? "error" : "ok"}>{message}</div>}
     </>
   );
 }

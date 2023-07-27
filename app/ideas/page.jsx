@@ -19,7 +19,7 @@ async function fetchIdeas() {
 
 export default async function Ideas() {
   const ideas = await fetchIdeas();
-  console.log({ ideasFromComponents: ideas });
+  //console.log({ ideasFromComponents: ideas });
   return (
     <main className="main">
       <div className={style.container}>

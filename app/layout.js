@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import { AuthContextProvider } from "./context/AuthContextProvider";
 import "./globals.css";
 //import { Inter } from "next/font/google"; //pour appeler les polices de google
 
@@ -14,8 +15,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       {/* on appel les polices avec inter.classname */}
       <body>
-        <Header />
-        {children}
+        <AuthContextProvider>
+          <Header />
+          {children}
+        </AuthContextProvider>
       </body>
     </html>
   );
