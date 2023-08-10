@@ -1,7 +1,5 @@
 # Twitter-Like App with Next.js, JSON Data, and Firebase Authentication
 
-
-
 Welcome to the Twitter-Like App built with Next.js! This project enables users to create and retrieve tweets from a JSON-based database, along with implementing user authentication through Firebase. Experience the power of real-time web applications with an intuitive user interface.
 
 ## Features
